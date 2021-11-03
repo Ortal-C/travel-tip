@@ -31,10 +31,8 @@ function addMapListener(ev) {
         lat: ev.latLng.lat(),
         lng: ev.latLng.lng()
     }
-    infoWindow.setPosition(pos);
-    // infoWindow.setContent("Location found.");
-    infoWindow.open(gMap);
-    gMap.setCenter(pos);
+    const name = prompt('Enter name:')
+    locService.setLocs(name, pos.lat, pos.lng);
 }
 
 function addMarker(loc) {

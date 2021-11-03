@@ -1,35 +1,36 @@
 export const locService = {
-    getLocs,
-    createLoc
-}
+	getLocs,
+	setLocs,
+};
 
 import { storage } from './storage.js';
 
 var gNextId = 0;
-const KEY = 'locsDB'
-const locs = [
-    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
-    { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
-]
+const KEY = 'locsDB';
 
 function getLocs() {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(locs);
-        }, 2000)
-    });
+    const locs = storage.load(KEY) || {}
+	return new Promise(resolve => setTimeout(resolve, 2000, locs));
 }
 
-function createLoc(name = 'My place', lat, lng) {
-    var loc = {
-        id: gNextId++,
-        name,
-        lat,
-        lng,
-        weather: null,
-        createdAt: Date.now(),
-        updatedAt: Date.now()
-    }
-    locs.push(loc)
-    storage.save(KEY, locs)
+function _createLoc(name = 'My place', lat, lng) {
+	return {
+		id: gNextId++,
+		name,
+		lat,
+		lng,
+		weather: null,
+		createdAt: Date.now(),
+		updatedAt: Date.now(),
+	};
+}
+
+function setLocs(name, lat, lng) {
+	var locs = storage.load(KEY) || {};
+	if (locs && locs[name]) {
+		console.log('exists');
+	} else {
+		locs[name] = _createLoc(name, lat, lng);
+		storage.save(KEY, locs);
+	}
 }
