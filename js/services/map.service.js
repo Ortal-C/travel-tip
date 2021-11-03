@@ -6,6 +6,7 @@ export const mapService = {
 };
 
 import { locService } from './loc.service.js';
+import { storage } from './storage.js';
 
 var gMap;
 
@@ -46,8 +47,10 @@ function addMarker(loc) {
 }
 
 function panTo(lat, lng) {
+	console.log('Hello');
 	var laLatLng = new google.maps.LatLng(lat, lng);
 	gMap.panTo(laLatLng);
+	storage.save('pos', { lat, lng })
 }
 
 function getGeoLoc(key) {
