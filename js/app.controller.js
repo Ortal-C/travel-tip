@@ -9,12 +9,26 @@ window.onDeleteLoc = onDeleteLoc;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 window.onSearchLoc = onSearchLoc;
+window.onCopyLocation = onCopyLocation;
 
 function onInit() {
-	mapService.initMap().then((map) => {
-		map.addListener('click', addMapListener);
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const lat = +urlParams.get('lat')
+    const lng = +urlParams.get('lng')
+    if (lat && lng) onPanTo(lat, lng)
+    mapService.initMap().then((map) => {
+        map.addListener('click', addMapListener);
+    });
+    onGetLocs();
+}
+
+function onCopyLocation(){
+	locService.getCurrLoc().then(loc =>{
+		var str = `https://ortal-c.github.io/travel-tip/index.html?lat=${+loc.lat}&lng=${+loc.lng}`
+		navigator.clipboard.writeText(str);
+		console.log(str);
 	});
-	onGetLocs();
 }
 
 function addMapListener(ev) {
@@ -26,10 +40,10 @@ function addMapListener(ev) {
 	};
 	const name = prompt('Enter name:');
 	locService.setLocs(name, pos.lat, pos.lng);
+	onPanTo(pos.lat, pos.lng);
 	infoWindow.setPosition(pos);
 	infoWindow.setContent(name);
 	infoWindow.open(this);
-	this.setCenter(pos);
 	onGetLocs();
 }
 
@@ -60,7 +74,9 @@ function onGetLocs() {
 }
 
 function renderLocs(locs) {
-	var strHtml = `<table><thead>
+	var strHtml = `
+	<h3>My saved locations</h3>
+	<table><thead>
     <th>Name</th>
     <th>Lat</th>
     <th>Lng</th>
@@ -71,16 +87,12 @@ function renderLocs(locs) {
 	for (const loc in locs) {
 		const value = locs[loc];
 		strHtml += `<tr>
-            <td>${value.name}</td>
-            <td>${value.lat}</td>
-            <td>${value.lng}</td>
+            <td onclick="onPanTo('${value.lat}','${value.lng}')">${value.name}</td>
+            <td>${value.lat.toFixed(5)}</td>
+            <td>${value.lng.toFixed(5)}</td>
             <td>${utils.getDate(value.createdAt)}</td>
-            <td><button class="btn-go" onclick="onPanTo('${value.lat}','${
-			value.lng
-		}')">Go</button></td>
-            <td><button class="btn-delete" onclick="onDeleteLoc('${
-							value.name
-						}')">Delete</button></td>
+            <td><button class="btn-go" onclick="onPanTo('${value.lat}','${value.lng}')">👀</button></td>
+            <td><button class="btn-delete" onclick="onDeleteLoc('${value.name}')">❌</button></td>
         </tr>`;
 	}
 	strHtml += '</tbody></table>';

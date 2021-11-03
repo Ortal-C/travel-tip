@@ -5,4 +5,59 @@
 body {
     margin: 0;
     background-color: aliceblue;
+    font-family: Cambria, serif;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a{
+    text-decoration: none;
+    color: #111;
+}
+
+h1{
+    font-size: 72px;
+    margin: 0;
+}
+
+input{
+    border-radius: 10em ;
+    border: 1px solid gray;
+    padding: 10px;
+    height: 2rem;
+    width: 400px;
+}
+
+.btn-search{
+    border-radius: 10em ;
+    border: 1px solid gray;
+    height: 2rem;
+
+}
+.btn-user-pos{
+    width:200px;
+}
+.main-layout{
+    margin:0px 10%;
+}
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+.user-locations{
+    height: 40%;
+    width: 70%;
+    padding-inline-start: 40px;
+}
+
+td{
+    padding: 0px 20px;
+    text-align: center;
 }
