@@ -4,10 +4,12 @@ export const mapService = {
     panTo
 }
 
-var gMap;
-var gNextId = 0;
+import { locService } from './loc.service.js';
 
-function initMap(lat = 31.91100, lng = 35.00576) {
+var gMap;
+
+function initMap(lat = 32.085300, lng = 34.781769) {
+    let infoWindow;
     console.log('InitMap');
     return _connectGoogleApi()
         .then(() => {
@@ -15,17 +17,22 @@ function initMap(lat = 31.91100, lng = 35.00576) {
             gMap = new google.maps.Map(
                 document.querySelector('#map'), {
                 center: { lat, lng },
-                zoom: 15
+                zoom: 14
             })
+            infoWindow = new google.maps.InfoWindow();
             console.log('Map!', gMap, gMap.center);
+            // google.maps.event.addListener(gMap, "click", (event) => {
             gMap.addListener("click", (event) => {
-                // google.maps.event.addListener(gMap, "click", (event) => {
-                var lat = event.latLng.lat()
-                var lng = event.latLng.lng()
-                console.log(lat, lng);
-                // var placeName = prompt('Enter place name');
-                // onAddPlace(placeName, lat, lng)
+                const pos = {
+                    lat: event.latLng.lat(),
+                    lng: event.latLng.lng()
+                }
+                console.log(event.latLng.lat(), event.latLng.lng());
                 console.log('Map', gMap.center.lat(), gMap.center.lng());
+                infoWindow.setPosition(pos);
+                infoWindow.setContent("Location found.");
+                infoWindow.open(gMap);
+                gMap.setCenter(pos);
             });
         })
 }
