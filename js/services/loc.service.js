@@ -1,5 +1,6 @@
 export const locService = {
-    getLocs
+    getLocs,
+    createLoc
 }
 
 const locs = [
@@ -13,4 +14,17 @@ function getLocs() {
             resolve(locs);
         }, 2000)
     });
+}
+
+function createLoc(name = 'My place', lat, lng) {
+    var loc = {
+        id: gNextId++,
+        name,
+        lat,
+        lng,
+        weather: null,
+        createdAt: Date.now(),
+        updatedAt: Date.now()
+    }
+    locs.push(loc)
 }

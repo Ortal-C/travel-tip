@@ -5,6 +5,7 @@ export const mapService = {
 }
 
 var gMap;
+var gNextId = 0;
 
 function initMap(lat = 31.91100, lng = 35.00576) {
     console.log('InitMap');
@@ -17,17 +18,14 @@ function initMap(lat = 31.91100, lng = 35.00576) {
                 zoom: 15
             })
             console.log('Map!', gMap, gMap.center);
-            google.maps.event.addListener(gMap, "click", (event) => {
-                console.log(event.latLng);
-                var lat = event.latLng.lat().toFixed(5)
-                var lng = event.latLng.lng().toFixed(5)
+            gMap.addListener("click", (event) => {
+                // google.maps.event.addListener(gMap, "click", (event) => {
+                var lat = event.latLng.lat()
+                var lng = event.latLng.lng()
                 console.log(lat, lng);
                 // var placeName = prompt('Enter place name');
                 // onAddPlace(placeName, lat, lng)
                 console.log('Map', gMap.center.lat(), gMap.center.lng());
-                // gMap.center.lat = lat;
-                // gMap.center.lng = lng;
-                // gMap.setCenter({ lat: gMap.center.lat(), lng: gMap.center.lng(), zoom: 15 })
             });
         })
 }
