@@ -30,10 +30,9 @@ function addMapListener(ev) {
 	};
 	const name = prompt('Enter name:');
 	locService.setLocs(name, pos.lat, pos.lng);
-
 	infoWindow.setPosition(pos);
 	infoWindow.setContent(name);
-	infoWindow.open(gMap);
+    infoWindow.open(gMap);
 	gMap.setCenter(pos);
 }
 
