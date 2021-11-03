@@ -6,6 +6,7 @@ export const locService = {
 import { storage } from './storage.js';
 
 var gNextId = 0;
+const KEY = 'locsDB'
 const locs = [
     { name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
     { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
@@ -30,5 +31,5 @@ function createLoc(name = 'My place', lat, lng) {
         updatedAt: Date.now()
     }
     locs.push(loc)
-    // storage.save('locsDB', locs)
+    storage.save(KEY, locs)
 }
