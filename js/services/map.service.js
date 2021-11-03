@@ -7,9 +7,10 @@ export const mapService = {
 import { locService } from './loc.service.js';
 
 var gMap;
+var infoWindow;
+
 
 function initMap(lat = 32.085300, lng = 34.781769) {
-    let infoWindow;
     console.log('InitMap');
     return _connectGoogleApi()
         .then(() => {
@@ -22,19 +23,21 @@ function initMap(lat = 32.085300, lng = 34.781769) {
             infoWindow = new google.maps.InfoWindow();
             console.log('Map!', gMap, gMap.center);
             // google.maps.event.addListener(gMap, "click", (event) => {
-            gMap.addListener("click", (event) => {
-                const pos = {
-                    lat: event.latLng.lat(),
-                    lng: event.latLng.lng()
-                }
-                console.log(event.latLng.lat(), event.latLng.lng());
-                console.log('Map', gMap.center.lat(), gMap.center.lng());
-                infoWindow.setPosition(pos);
-                infoWindow.setContent("Location found.");
-                infoWindow.open(gMap);
-                gMap.setCenter(pos);
-            });
+            gMap.addListener("click", addMapListener);
         })
+}
+
+function addMapListener(ev){
+    const pos = {
+        lat: ev.latLng.lat(),
+        lng: ev.latLng.lng()
+    }
+    console.log(ev.latLng.lat(), ev.latLng.lng());
+    console.log('Map', gMap.center.lat(), gMap.center.lng());
+    infoWindow.setPosition(pos);
+    infoWindow.setContent("Location found.");
+    infoWindow.open(gMap);
+    gMap.setCenter(pos);
 }
 
 function addMarker(loc) {
