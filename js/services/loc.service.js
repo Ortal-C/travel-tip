@@ -17,7 +17,7 @@ function getLocs() {
 function setLocs(name, lat, lng) {
 	var locs = storage.load(KEY) || {};
 	if (locs && locs[name]) {
-		console.log('exists');
+        console.log('Already exists in DB.');
 	} else {
 		locs[name] = _createLoc(name, lat, lng);
 		storage.save(KEY, locs);
@@ -34,7 +34,7 @@ function deleteLoc(name){
 
 function _createLoc(name = 'My place', lat, lng) {
 	return {
-		id: gNextId++,
+		id: ++gNextId,
 		name,
 		lat,
 		lng,
