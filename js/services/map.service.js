@@ -22,20 +22,17 @@ function initMap(lat = 32.085300, lng = 34.781769) {
             })
             infoWindow = new google.maps.InfoWindow();
             console.log('Map!', gMap, gMap.center);
-            // google.maps.event.addListener(gMap, "click", (event) => {
             gMap.addListener("click", addMapListener);
         })
 }
 
-function addMapListener(ev){
+function addMapListener(ev) {
     const pos = {
         lat: ev.latLng.lat(),
         lng: ev.latLng.lng()
     }
-    console.log(ev.latLng.lat(), ev.latLng.lng());
-    console.log('Map', gMap.center.lat(), gMap.center.lng());
     infoWindow.setPosition(pos);
-    infoWindow.setContent("Location found.");
+    // infoWindow.setContent("Location found.");
     infoWindow.open(gMap);
     gMap.setCenter(pos);
 }
