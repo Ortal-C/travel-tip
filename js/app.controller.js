@@ -1,9 +1,11 @@
 import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
+import { utils } from './services/utils.service.js'
 
 window.onload = onInit;
 window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
+window.onDeleteLoc = onDeleteLoc;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 
@@ -14,6 +16,8 @@ function onInit() {
         })
         .catch(() => console.log('Error: cannot init map'));
 }
+
+
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
 function getPosition() {
@@ -31,8 +35,29 @@ function onAddMarker() {
 function onGetLocs() {
     locService.getLocs()
         .then(locs => {
-            console.log('Locations:', locs)
-            document.querySelector('.locs').innerText = JSON.stringify(locs)
+            var strHtml = `<table><thead>
+            <th>Name</th>
+            <th>Lat</th>
+            <th>Lng</th>
+            <th>added at</th>
+            <th>Go</th>
+            <th>Delete</th>
+            </thead><tbody>`;
+            for (const loc in locs) {
+                const value = locs[loc];
+                console.log(value);
+                strHtml += 
+                `<tr>
+                    <td>${value.name}</td>
+                    <td>${value.lat}</td>
+                    <td>${value.lng}</td>
+                    <td>${utils.getDate(value.createdAt)}</td>
+                    <td><button class="btn-go" onclick="onPanTo('${value.lat}','${value.lng}')">Go</button></td>
+                    <td><button class="btn-delete" onclick="onDeleteLoc('${value.id}','${value.name}')">Delete</button></td>
+                </tr>`
+            }
+            strHtml+='</tbody></table>'
+            document.querySelector('.user-locations').innerHTML = strHtml;
         })
 }
 
@@ -48,7 +73,9 @@ function onGetUserPos() {
         })
 }
 
-function onPanTo() {
-    console.log('Panning the Map');
-    mapService.panTo(35.6895, 139.6917);
+function onPanTo(lat, lng) {
+    mapService.panTo(lat, lng);
+}
+function onDeleteLoc(id, name) {
+    console.log('Mefanek in delete', id, name);
 }
