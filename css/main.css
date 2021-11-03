@@ -8,15 +8,16 @@ body {
     font-family: Cambria, serif;
 }
 
+a{
+    text-decoration: none;
+    color: #111;
+}
+
+/* HEADER */
 header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-a{
-    text-decoration: none;
-    color: #111;
 }
 
 h1{
@@ -38,13 +39,19 @@ input{
     height: 2rem;
 
 }
+
 .btn-user-pos{
     width:200px;
 }
+
+/* MAIN-LAYOUT  */
+
 .main-layout{
     margin:0px 10%;
 }
 
+
+/* MAIN CONTENT */
 .main-container{
     display: flex;
     flex-direction: column;
@@ -52,8 +59,9 @@ input{
     align-content: center;
 }
 .user-locations{
-    height: 40%;
-    width: 70%;
+    max-height: 400px;
+    overflow: scroll;
+    width: 100%;
     padding-inline-start: 40px;
 }
 
