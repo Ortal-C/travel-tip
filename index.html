@@ -9,20 +9,21 @@
 </head>
 
 <body>
-    <h1>TravelTip Starter</h1>
-    <input type="text" class="input-search" placeholder="Enter address for get location ...">
-    <button class="btn-search" onclick="onSearchLoc()">Search</button>
-    <div id="map" style="width: 100%; height: 400px;"></div>
-    <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
-    <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
-    <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
-    <button onclick="onPanTo()"class="btn-pan">Pan Map to Tokyo</button>
-
-    <p>You are at: <span class="user-pos"></span></p>
-    <p>Locations: <span class="locs"></span></p>
-    <section class="user-locations">
-
-    </section>
+    <main class="main-container main-layout">
+        <header class="main-layout">
+            <h1><a href="#">TravelTip</a></h1>
+            <section class="search">
+                <input type="text" class="input-search" placeholder="Enter address for get location ..." title="Enter address for get location ...">
+                <button class="btn-search" onclick="onSearchLoc()" title="Click for find address">🔎</button>
+            </section>
+        </header>
+        <button class="btn-copy-location" onclick="onCopyLocation()" title="Click for coping current location">Click for coping current location</button>
+        <section id="map" style="width: 100%; height: 400px;"></section>
+        <button onclick="onGetUserPos()" class="btn-user-pos" title="See my location"> See my location 🎯</button>
+        <section class="user-locations"></section>
+            
+        </main>
+            
     <script src="lib/axios.js"></script>
     <script src="lib/swal.js"></script>
     <script type="module" src="js/app.controller.js"></script>

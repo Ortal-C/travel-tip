@@ -5,4 +5,73 @@
 body {
     margin: 0;
     background-color: aliceblue;
+    font-family: Cambria, serif;
+}
+
+a{
+    text-decoration: none;
+    color: #111;
+}
+
+/* HEADER */
+header{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1{
+    font-size: 72px;
+    margin: 0;
+}
+
+.search{
+    max-width: 50%;
+    flex-wrap: nowrap;
+}
+
+input{
+    border-radius: 10em ;
+    border: 1px solid gray;
+    padding: 10px;
+    height: 2rem;
+    width: 80%;
+}
+
+.btn-search{
+    border-radius: 10em ;
+    border: 1px solid gray;
+    height: 2rem;
+
+}
+
+.btn-user-pos{
+    width:200px;
+}
+
+/* MAIN-LAYOUT  */
+
+.main-layout{
+    margin:0px 10%;
+}
+
+
+/* MAIN CONTENT */
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+.user-locations{
+    max-height: 400px;
+    overflow: scroll;
+    width: 100%;
+    
+}
+
+td{
+    padding: 0px 20px;
+    text-align: center;
 }
