@@ -16,6 +16,7 @@ a{
 /* HEADER */
 header{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
@@ -25,12 +26,17 @@ h1{
     margin: 0;
 }
 
+.search{
+    max-width: 50%;
+    flex-wrap: nowrap;
+}
+
 input{
     border-radius: 10em ;
     border: 1px solid gray;
     padding: 10px;
     height: 2rem;
-    width: 400px;
+    width: 80%;
 }
 
 .btn-search{
@@ -62,7 +68,7 @@ input{
     max-height: 400px;
     overflow: scroll;
     width: 100%;
-    padding-inline-start: 40px;
+    
 }
 
 td{

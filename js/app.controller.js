@@ -12,8 +12,6 @@ window.onSearchLoc = onSearchLoc;
 window.onCopyLocation = onCopyLocation;
 
 function onInit() {
-	// console.log('lat',lat, 'lng', lng,);
-    // const queryString = window.location.origin;
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const lat = +urlParams.get('lat')
