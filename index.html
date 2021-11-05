@@ -17,15 +17,18 @@
                 <button class="btn-search" onclick="onSearchLoc()" title="Click for find address">🔎</button>
             </section>
         </header>
-        <button class="btn-copy-location" onclick="onCopyLocation()" title="Click for coping current location">Click for coping current location</button>
         <section id="map" style="width: 100%; height: 400px;"></section>
-        <button onclick="onGetUserPos()" class="btn-user-pos" title="See my location"> See my location 🎯</button>
-        <section class="user-locations"></section>
-            
+        <section class="actions">
+            <button class="btn-copy-location" onclick="onCopyLocation()" title="Click for coping current location">Copy current location 📄</button>
+            <button onclick="onGetUserPos()" class="btn-user-pos" title="See my location"> See my location 🎯</button>
+        </section>
+        <section class="info">
+            <section class="user-locations"></section>
+            <section class="weather-container"></section>
+        </section>
         </main>
             
     <script src="lib/axios.js"></script>
-    <script src="lib/swal.js"></script>
     <script type="module" src="js/app.controller.js"></script>
 </body>
 

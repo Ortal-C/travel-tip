@@ -1,77 +1,100 @@
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    background-color: aliceblue;
-    font-family: Cambria, serif;
+	margin: 0;
+	background-color: aliceblue;
+	font-family: Cambria, serif;
+	color: #111;
 }
 
-a{
-    text-decoration: none;
-    color: #111;
+a {
+	text-decoration: none;
+	color: #111;
 }
 
 /* HEADER */
-header{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+header {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
 }
 
-h1{
-    font-size: 72px;
-    margin: 0;
+h1 {
+	font-size: 72px;
+	margin: 0;
 }
 
-.search{
-    max-width: 50%;
-    flex-wrap: nowrap;
+.search {
+	max-width: 50%;
+	flex-wrap: nowrap;
 }
 
-input{
-    border-radius: 10em ;
-    border: 1px solid gray;
-    padding: 10px;
-    height: 2rem;
-    width: 80%;
+input {
+	border-radius: 10em;
+	border: 1px solid gray;
+	padding: 10px;
+	height: 2rem;
+	width: 80%;
 }
 
-.btn-search{
-    border-radius: 10em ;
-    border: 1px solid gray;
-    height: 2rem;
-
-}
-
-.btn-user-pos{
-    width:200px;
+button {
+	border-radius: 10em;
+	background-color: white;
+	border: 1px solid gray;
+	height: 2rem;
 }
 
 /* MAIN-LAYOUT  */
-
-.main-layout{
-    margin:0px 10%;
+.main-layout {
+	margin: 0px 10%;
 }
-
 
 /* MAIN CONTENT */
-.main-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-}
-.user-locations{
-    max-height: 400px;
-    overflow: scroll;
-    width: 100%;
-    
+.main-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
 }
 
-td{
-    padding: 0px 20px;
-    text-align: center;
+.actions {
+	display: flex;
+	justify-content: center;
+}
+
+.btn-copy-location,
+.btn-user-pos {
+	width: 200px;
+	margin: 3px 20px;
+}
+
+.btn-go,
+.btn-delete {
+	background-color: transparent;
+	cursor: pointer;
+	border: none;
+}
+
+.info {
+	display: flex;
+	align-content: center;
+}
+
+.user-locations {
+	max-height: 70%;
+	overflow: scroll;
+	width: 100%;
+}
+
+td {
+	border-bottom: 1px solid lightgray;
+	padding: 0px 20px;
+	text-align: center;
+}
+
+.weather-container {
+	width: 30%;
 }

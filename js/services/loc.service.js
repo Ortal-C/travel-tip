@@ -3,6 +3,7 @@ export const locService = {
     getCurrLoc,
 	setLocs,
     deleteLoc,
+	getWeather
 };
 
 import { storage } from './storage.js';
@@ -13,7 +14,7 @@ const KEY_CURR_lOC = 'currLoc';
 
 function getLocs() {
     const locs = storage.load(KEY) || {}
-	return new Promise(resolve => setTimeout(resolve, 2000, locs));
+	return new Promise(resolve => setTimeout(resolve, 200, locs));
 }
 
 function getCurrLoc(){
@@ -40,6 +41,12 @@ function deleteLoc(name){
     if (!locs || !locs[name]) return;
     delete locs[name];
     storage.save(KEY, locs)
+}
+
+function getWeather(lat, lng) {
+	return axios
+		.get(`https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${+lat}&lon=${+lng}&APPID=API_KEY`)
+		.then(res => res.data.main.temp);
 }
 
 function _createLoc(name = 'My place', lat, lng) {
