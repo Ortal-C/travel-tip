@@ -61,10 +61,10 @@ function onSearchLoc() {
 }
 
 function getPosition() {
-	console.log('Getting Pos');
-	return new Promise((resolve, reject) => {
-		navigator.geolocation.getCurrentPosition(resolve, reject);
-	});
+    console.log('Getting Pos');
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
 }
 
 function showLocs() {
@@ -72,7 +72,7 @@ function showLocs() {
 }
 
 function renderLocs(locs) {
-	var strHtml = `
+    var strHtml = `
 	<h3>My saved locations</h3>
 	<table><thead>
     <th>Name</th>
